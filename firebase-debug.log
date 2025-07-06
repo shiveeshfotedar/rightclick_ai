@@ -19,3 +19,8 @@ You're about to initialize a Firebase project in this directory:
 
   /Users/fotedars/Documents/Projects/rightclick_ai
 
+[debug] [2025-07-06T05:41:15.570Z] Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:216:20)
+    at TTY.callbackTrampoline (node:internal/async_hooks:130:17)
+[error] 
+[error] Error: An unexpected error has occurred.
