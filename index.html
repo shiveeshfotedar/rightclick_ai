@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MacOS Aqua Styled Context Menu with AI Integration</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Include html2canvas from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+    I'm really excited to talk to you. I was sitting in the audience yesterday as you were announcing Alexa Plus. I have a lot of questions about how it works, the feature set, where do you think it's going. But it occurred to me, as I was sitting there watching you present it, and then later as I was watching some of the demos of it working, that to make it happen had to have required some big structure and culture rethinks inside of Amazon itself.
+
+You joined about a year and a half ago. Decoder is all about structure and culture rethinks. So there's a lot here. There's a product to talk about, but then there's the path of getting to that product. Is that how you see it? That you had to reset some parts of Amazon to get to Alexa Plus?
+
+I don't think resetting Amazon; Amazon's incredibly ambitious in so many ways. Always learning, changing. I mean it's pretty powerful. I think resetting the devices team a little bit, yeah. First off, we hadn't really had a large-scale event, as I understand it — obviously, I wasn't there — since pre-pandemic.
+
+The events under your predecessor, Dave Limp, they were entertaining in a way. It was, here's a firehose of stuff with Alexa in it. Microwave, a coffee maker. We would count, maybe, like, they announced 45 products.
+
+Yesterday, you announced one new product, Alexa Plus and no new hardware, and that's a pretty big difference.
+
+I think that was important. So yeah, I guess that's a change for sure from what it's been. What we did yesterday as a team, it was a little bit of a reset. The team was pumped to do it, excited. We were never going to announce hardware. It wasn't a goal. We need to reset Alexa for the world, and bring Alexa Plus forward. That is a bit of a cultural shift. We're just going to focus on the service and what it's going to be.
+
+Great products are coming. We already have great products in market. We launched stuff at the holiday. And the team, they rallied. The company rallied. It's pretty awesome. Having [Amazon CEO] Andy [Jassy] there is fantastic. And you can feel a vibe in that room for sure. I hope you did. I mean, you made your snarky comment about the music when you got in there. Man, we check every detail. I think I missed, I may have missed, I don't know...
+
+The chiptune rave music? It was pretty good. I always wonder who sets the playlist, 'cause you can do a lot with music in the pre-show.
+
+Every single part of that show after the moment the mic starts has been very, very well thought through. Yesterday's event was the highest risk event I've ever done. I mean, bar none.
+
+I mean, I watched you reintroduce laptops at Microsoft in competition with your partners.
+
+It doesn't compare.
+
+Really? Why so risky?
+
+Because when you're basically doing hardware, you have fallbacks. The demos aren't, they're not not live, but you always can just go to the hardware. When you're reinventing or re-architecting an entire service, there's no backup. It was the product. I think the only product video we had, like actual video, was the kids' portion. Because, honestly, you're not kids in the audience. So sharing a kids feature without some emotion is a waste of time. It's like, here's a kid feature, please write about it. So putting a little bit of emotion and storytelling in it.
+
+Those were all real demos. That all really happened. That was one of the principles of the event. It wasn't like, let's go make up a fake story and we'll just put film. That was the one area where it was just, it wasn't a vision piece, it was the product, but it was the only area that wasn't live. And so there was a lot of trepidation. This was the hardest kind of event we've put together, risk profile-wise.
+
+  <!-- API Key Input Section -->
+  <div id="apiKeySection">
+    <div id="apiKeyInput" class="api-input-container">
+      <input type="password" id="apiKeyField" placeholder="Enter OpenAI API Key (sk-...)" />
+      <button id="saveApiKey" class="api-button">Save</button>
+      <button id="testApiKey" class="api-button secondary">Test</button>
+    </div>
+    <div id="apiKeyStatus" class="hidden">
+      <span id="statusText">✅ API Key Active</span>
+      <button id="changeApiKey" class="status-button">Change</button>
+    </div>
+  </div>
+
+  <!-- A simple speech bubble following the mouse -->
+  <div id="speechBubble">Hello!</div>
+
+  <!-- Custom context menu -->
+  <div id="customContextMenu" class="hidden">
+    <div id="menuOptions">
+      <div class="menu-item" data-action="cut">Cut</div>
+      <div class="menu-item" data-action="copy">Copy</div>
+      <div class="menu-item" data-action="paste">Paste</div>
+      <div class="menu-separator"></div>
+      <div class="menu-item" data-action="inspect">Inspect Element <span class="shortcut">⌘⌥I</span></div>
+    </div>
+    <div class="menu-separator"></div>
+    <div class="input-group">
+      <input type="text" id="promptInput" placeholder="Ask AI about this...">
+      <button id="sendToAI" class="mac-aqua-button aqua-button-blue">Ask</button>
+    </div>
+    <div id="screenshotPreview"></div>
+    <div id="aiResponse" class="hidden">
+      <div class="loading hidden">Processing...</div>
+      <div class="response-text"></div>
+    </div>
+  </div>
+
+  <!-- Inspector Panel -->
+  <div id="inspectorPanel" class="hidden">
+    <div class="inspector-header">
+      <span>Element Inspector</span>
+      <button class="close-button">×</button>
+    </div>
+    <div class="inspector-content">
+      <div class="element-path"></div>
+      <div class="element-attributes"></div>
+      <div class="element-styles"></div>
+      <div class="inspector-tip">
+        Press ⌘⌥I (Mac) or Ctrl+Shift+I (Windows) to open Chrome DevTools
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

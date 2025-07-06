@@ -1,0 +1,398 @@
+/* -----------------------
+   Basic Page Styling
+   ----------------------- */
+
+   html {
+    min-width: 220px;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* -----------------------
+     API Key Input Section
+     ----------------------- */
+  #apiKeySection {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 280px;
+  }
+  
+  .api-input-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  #apiKeyField {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    min-width: 0;
+  }
+  
+  #apiKeyField:focus {
+    outline: none;
+    border-color: #0064e1;
+  }
+  
+  #apiKeyField.error {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+  }
+  
+  .api-button {
+    background: #0064e1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+  }
+  
+  .api-button:hover {
+    background: #0056c7;
+  }
+  
+  .api-button.secondary {
+    background: #6c757d;
+  }
+  
+  .api-button.secondary:hover {
+    background: #5a6268;
+  }
+  
+  .api-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  #apiKeyStatus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  
+  #apiKeyStatus.hidden {
+    display: none;
+  }
+  
+  #statusText {
+    color: #666;
+    font-weight: 500;
+  }
+  
+  #statusText.connected {
+    color: #28a745;
+  }
+  
+  #statusText.disconnected {
+    color: #dc3545;
+  }
+  
+  .status-button {
+    background: #0064e1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .status-button:hover {
+    background: #0056c7;
+  }
+  
+  .status-button.change {
+    background: #6c757d;
+  }
+  
+  .status-button.change:hover {
+    background: #5a6268;
+  }
+  
+  /* -----------------------
+     Speech Bubble
+     ----------------------- */
+  #speechBubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px 10px;
+    pointer-events: none;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+  
+  /* -----------------------
+     Custom Context Menu
+     ----------------------- */
+     #customContextMenu {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        padding: 4px 0;
+        width: 240px;
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      
+      #customContextMenu.hidden {
+        display: none;
+      }
+      
+  
+  /* -----------------------
+     Menu Items
+     ----------------------- */
+  #menuOptions {
+    margin-bottom: 4px;
+  }
+  
+  /* Simple vertical list items */
+  .menu-item {
+    padding: 4px 12px;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    min-height: 20px;
+    color: #000;
+    justify-content: space-between;
+  }
+  
+  .shortcut {
+    color: #666;
+    font-size: 12px;
+    margin-left: 20px;
+  }
+  
+  .menu-item:hover {
+    background-color: #0064e1;
+    color: white;
+  }
+  
+  .menu-item:hover .shortcut {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .menu-separator {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 4px 0;
+  }
+  
+  /* -----------------------
+     Input Group
+     ----------------------- */
+  .input-group {
+    display: flex;
+    gap: 4px;
+    padding: 4px 8px;
+    align-items: center;
+  }
+  
+  #promptInput {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  #promptInput:focus {
+    outline: none;
+    border-color: #0064e1;
+  }
+  
+  /* -----------------------
+     Buttons
+     ----------------------- */
+  .mac-aqua-button {
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  
+  .aqua-button-grey {
+    background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+    border: 1px solid #ccc;
+    color: #333;
+  }
+  
+  .aqua-button-blue {
+    background: #0064e1;
+    border: none;
+    color: white;
+  }
+  
+  .aqua-button-blue:hover {
+    background: #0056c7;
+  }
+  
+  /* -----------------------
+     AI Response
+     ----------------------- */
+  #aiResponse {
+    margin: 4px 8px;
+    padding: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  #aiResponse.hidden {
+    display: none;
+  }
+  
+  .loading {
+    text-align: center;
+    color: #666;
+    padding: 8px;
+    font-size: 13px;
+  }
+  
+  .loading.hidden {
+    display: none;
+  }
+  
+  .response-text {
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+  }
+  
+  /* -----------------------
+     Screenshot Preview
+     ----------------------- */
+  #screenshotPreview {
+    margin: 4px 8px;
+    text-align: center;
+  }
+  
+  #screenshotPreview img {
+    max-width: 100%;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* -----------------------
+     Selection Box (Right-Click Drag)
+     ----------------------- */
+  .selection-box {
+    position: absolute;
+    border: 2px dashed #0064e1;
+    background: rgba(0, 100, 225, 0.1);
+    pointer-events: none;
+    z-index: 999;
+  }
+  
+  /* -----------------------
+     Inspector Panel
+     ----------------------- */
+  #inspectorPanel {
+    position: fixed;
+    right: 20px;
+    top: 80px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+  }
+  
+  #inspectorPanel.hidden {
+    display: none;
+  }
+  
+  .inspector-header {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(247, 247, 247, 0.9);
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .close-button {
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+  
+  .close-button:hover {
+    color: #000;
+  }
+  
+  .inspector-content {
+    padding: 12px;
+  }
+  
+  .element-path {
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    color: #0064e1;
+    margin-bottom: 8px;
+    word-break: break-all;
+  }
+  
+  .element-attributes {
+    margin-bottom: 8px;
+  }
+  
+  .element-styles {
+    margin-bottom: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .inspector-tip {
+    padding: 8px;
+    background: rgba(0, 100, 225, 0.1);
+    border-radius: 4px;
+    color: #0064e1;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  /* Highlight for inspected element */
+  .highlight-inspect {
+    outline: 2px solid #0064e1 !important;
+    outline-offset: -1px !important;
+    background-color: rgba(0, 100, 225, 0.1) !important;
+  }
