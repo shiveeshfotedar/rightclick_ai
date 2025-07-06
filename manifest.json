@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "AI Context Assistant",
+  "version": "1.0.0",
+  "description": "Right-click AI assistant with conversation history",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://*.firebaseapp.com/*",
+    "https://*.googleapis.com/*",
+    "https://api.openai.com/*"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["firebase-config.js", "content-script.js"],
+      "css": ["content-styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "AI Context Assistant"
+  },
+  
+  "options_page": "options/options.html",
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["firebase-config.js", "assets/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

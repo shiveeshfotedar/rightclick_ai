@@ -1,0 +1,696 @@
+/* content-styles.css - Chrome Extension Content Script Styles */
+
+/* Prevent conflicts with host page styles */
+#speechBubble,
+#customContextMenu,
+#inspectorPanel,
+#authIndicator,
+.ai-response-bubble,
+.ai-conversation-panel,
+.selection-box {
+  all: initial;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* -----------------------
+   Speech Bubble
+   ----------------------- */
+#speechBubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 5px 10px;
+  pointer-events: none;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  z-index: 9999;
+  display: none; /* Hidden by default in extension */
+}
+
+/* -----------------------
+   Auth Status Indicator
+   ----------------------- */
+#authIndicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+#authStatus {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 11px;
+  min-width: 200px;
+  pointer-events: auto;
+}
+
+.auth-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-button {
+  background: #0064e1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.auth-button:hover {
+  background: #0056c7;
+}
+
+.user-avatar-small {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0064e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* -----------------------
+   Custom Context Menu
+   ----------------------- */
+#customContextMenu {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  padding: 4px 0;
+  width: 240px;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#customContextMenu.hidden {
+  display: none;
+}
+
+/* -----------------------
+   Menu Items
+   ----------------------- */
+#menuOptions {
+  margin-bottom: 4px;
+}
+
+.menu-item {
+  padding: 4px 12px;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  min-height: 20px;
+  color: #000;
+  justify-content: space-between;
+}
+
+.shortcut {
+  color: #666;
+  font-size: 12px;
+  margin-left: 20px;
+}
+
+.menu-item:hover {
+  background-color: #0064e1;
+  color: white;
+}
+
+.menu-item:hover .shortcut {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.menu-separator {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 4px 0;
+}
+
+/* -----------------------
+   Input Group
+   ----------------------- */
+.input-group {
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+  align-items: center;
+}
+
+#promptInput {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+}
+
+#promptInput:focus {
+  outline: none;
+  border-color: #0064e1;
+}
+
+/* -----------------------
+   Buttons
+   ----------------------- */
+.mac-aqua-button {
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.aqua-button-grey {
+  background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.aqua-button-blue {
+  background: #0064e1;
+  border: none;
+  color: white;
+}
+
+.aqua-button-blue:hover {
+  background: #0056c7;
+}
+
+/* -----------------------
+   AI Response
+   ----------------------- */
+#aiResponse {
+  margin: 4px 8px;
+  padding: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#aiResponse.hidden {
+  display: none;
+}
+
+.loading {
+  text-align: center;
+  color: #666;
+  padding: 8px;
+  font-size: 13px;
+}
+
+.loading.hidden {
+  display: none;
+}
+
+.response-text {
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+/* -----------------------
+   Screenshot Preview
+   ----------------------- */
+#screenshotPreview {
+  margin: 4px 8px;
+  text-align: center;
+}
+
+#screenshotPreview img {
+  max-width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* -----------------------
+   Selection Box (Right-Click Drag)
+   ----------------------- */
+.selection-box {
+  position: absolute;
+  border: 2px dashed #0064e1;
+  background: rgba(0, 100, 225, 0.1);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* -----------------------
+   Inspector Panel
+   ----------------------- */
+#inspectorPanel {
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+}
+
+#inspectorPanel.hidden {
+  display: none;
+}
+
+.inspector-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(247, 247, 247, 0.9);
+  border-radius: 8px 8px 0 0;
+}
+
+.close-button {
+  border: none;
+  background: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.inspector-content {
+  padding: 12px;
+}
+
+.element-path {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  color: #0064e1;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.element-attributes {
+  margin-bottom: 8px;
+}
+
+.element-styles {
+  margin-bottom: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.inspector-tip {
+  padding: 8px;
+  background: rgba(0, 100, 225, 0.1);
+  border-radius: 4px;
+  color: #0064e1;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Highlight for inspected element */
+.highlight-inspect {
+  outline: 2px solid #0064e1 !important;
+  outline-offset: -1px !important;
+  background-color: rgba(0, 100, 225, 0.1) !important;
+}
+
+/* -----------------------
+   AI Response Bubbles
+   ----------------------- */
+.ai-response-bubble {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #0064e1, #0056c7);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 100, 225, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+}
+
+.ai-response-bubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(0, 100, 225, 0.4);
+}
+
+.ai-response-bubble::before {
+  content: '"';
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+}
+
+.ai-response-bubble.loading {
+  animation: pulse 1.5s infinite;
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+}
+
+.ai-response-bubble.loading::before {
+  content: '⋯';
+  font-size: 14px;
+  animation: dots 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes dots {
+  0%, 20% { opacity: 0; }
+  50% { opacity: 1; }
+  80%, 100% { opacity: 0; }
+}
+
+/* -----------------------
+   AI Conversation Panel
+   ----------------------- */
+.ai-conversation-panel {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 10001;
+  width: 450px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.ai-conversation-panel.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.ai-conversation-panel.minimized {
+  height: 50px;
+}
+
+.ai-conversation-panel.minimized .ai-conversation-messages,
+.ai-conversation-panel.minimized .ai-conversation-input {
+  display: none;
+}
+
+.ai-conversation-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 100, 225, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ai-conversation-title {
+  font-weight: 600;
+  color: #0064e1;
+  font-size: 14px;
+}
+
+.ai-conversation-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.ai-conversation-minimize,
+.ai-conversation-close {
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.ai-conversation-minimize:hover,
+.ai-conversation-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.ai-conversation-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  max-width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-message {
+  align-self: flex-end;
+}
+
+.ai-message {
+  align-self: flex-start;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.user-message .message-header {
+  flex-direction: row-reverse;
+}
+
+.message-role {
+  font-weight: 600;
+}
+
+.user-message .message-role {
+  color: #0064e1;
+}
+
+.ai-message .message-role {
+  color: #28a745;
+}
+
+.message-content {
+  padding: 10px 14px;
+  border-radius: 16px;
+  line-height: 1.4;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.user-message .message-content {
+  background: #0064e1;
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.ai-message .message-content {
+  background: rgba(0, 0, 0, 0.05);
+  color: #333;
+  border-bottom-left-radius: 6px;
+}
+
+.ai-conversation-input {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  background: rgba(247, 247, 247, 0.9);
+  flex-shrink: 0;
+}
+
+.input-container {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+
+.input-container textarea {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none;
+  min-height: 20px;
+  max-height: 120px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.input-container textarea:focus {
+  outline: none;
+  border-color: #0064e1;
+}
+
+.input-container textarea:disabled {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.send-button {
+  background: #0064e1;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.send-button:hover:not(:disabled) {
+  background: #0056c7;
+  transform: scale(1.05);
+}
+
+.send-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.send-icon {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.loading-dots {
+  font-size: 18px;
+  animation: dots 1.5s infinite;
+}
+
+.input-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.action-button {
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.action-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: #999;
+  color: #333;
+}
+
+.clear-btn:hover {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .ai-conversation-panel {
+    width: 320px;
+    height: 400px;
+  }
+  
+  #authIndicator {
+    top: 10px;
+    right: 10px;
+  }
+  
+  #inspectorPanel {
+    width: 250px;
+    right: 10px;
+    top: 60px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ai-response-bubble {
+    border: 3px solid #000;
+  }
+  
+  #customContextMenu {
+    border: 2px solid #000;
+  }
+  
+  .ai-conversation-panel {
+    border: 2px solid #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .ai-response-bubble,
+  .ai-conversation-panel,
+  .send-button {
+    transition: none;
+    animation: none;
+  }
+  
+  .ai-response-bubble:hover {
+    transform: none;
+  }
+  
+  .send-button:hover:not(:disabled) {
+    transform: none;
+  }
+}

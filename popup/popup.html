@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Context Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <h1>AI Context Assistant</h1>
+      <p>Right-click anywhere to start</p>
+    </div>
+
+    <div class="content">
+      <!-- Loading State -->
+      <div id="loading" class="loading">
+        Loading...
+      </div>
+
+      <!-- Authentication Section -->
+      <div id="authSection" class="auth-section hidden">
+        <div class="welcome-content">
+          <div class="icon">🤖</div>
+          <p class="description">
+            Sign in to save your AI conversations and access them across all your devices.
+          </p>
+        </div>
+        
+        <div class="auth-buttons">
+          <button id="signInBtn" class="btn btn-primary">Sign In</button>
+          <button id="signUpBtn" class="btn btn-outline">Create Account</button>
+        </div>
+        
+        <div class="features">
+          <div class="feature">✨ Save conversation history</div>
+          <div class="feature">🔐 Secure API key storage</div>
+          <div class="feature">☁️ Sync across devices</div>
+        </div>
+      </div>
+
+      <!-- User Section -->
+      <div id="userSection" class="user-section">
+        <!-- User Info -->
+        <div class="user-info">
+          <div id="userAvatar" class="user-avatar">U</div>
+          <div class="user-details">
+            <h3 id="userName">User</h3>
+            <p id="userEmail">user@example.com</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+          <div class="stat-card">
+            <div id="totalConversations" class="stat-number">0</div>
+            <div class="stat-label">Conversations</div>
+          </div>
+          <div class="stat-card">
+            <div id="todayCount" class="stat-number">0</div>
+            <div class="stat-label">Today</div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <h4>Quick Actions</h4>
+          <div class="action-grid">
+            <div class="action-btn" id="openSettings">
+              <div class="action-icon">⚙️</div>
+              <div class="action-label">Settings</div>
+            </div>
+            <div class="action-btn" id="viewHistory">
+              <div class="action-icon">📜</div>
+              <div class="action-label">History</div>
+            </div>
+            <div class="action-btn" id="exportData">
+              <div class="action-icon">📁</div>
+              <div class="action-label">Export</div>
+            </div>
+            <div class="action-btn" id="helpGuide">
+              <div class="action-icon">❓</div>
+              <div class="action-label">Help</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Conversations -->
+        <div class="recent-conversations">
+          <h4>Recent Conversations</h4>
+          <div id="recentList">
+            <div class="empty-state">
+              No conversations yet.<br>
+              Right-click on any webpage to start!
+            </div>
+          </div>
+        </div>
+
+        <!-- Sign Out -->
+        <button id="signOutBtn" class="btn btn-secondary">Sign Out</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-links">
+        <a href="#" id="privacyLink">Privacy</a>
+        <a href="#" id="supportLink">Support</a>
+        <a href="#" id="aboutLink">About</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

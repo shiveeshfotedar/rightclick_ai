@@ -1,0 +1,21 @@
+[debug] [2025-07-06T03:14:51.288Z] ----------------------------------------------------------------------
+[debug] [2025-07-06T03:14:51.290Z] Command:       /opt/homebrew/Cellar/node/23.11.0/bin/node /opt/homebrew/bin/firebase init
+[debug] [2025-07-06T03:14:51.291Z] CLI Version:   14.9.0
+[debug] [2025-07-06T03:14:51.291Z] Platform:      darwin
+[debug] [2025-07-06T03:14:51.291Z] Node Version:  v23.11.0
+[debug] [2025-07-06T03:14:51.291Z] Time:          Sat Jul 05 2025 20:14:51 GMT-0700 (Pacific Daylight Time)
+[debug] [2025-07-06T03:14:51.291Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-06T03:14:51.294Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-06T03:14:51.294Z] > authorizing via signed-in user (shiveeshfotedar@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/fotedars/Documents/Projects/rightclick_ai
+
